@@ -34,6 +34,29 @@ pip install kafka-python
 python py_kc.py
 ```
 
+## Output examples
+
+* When you run java_kp with OTEL Java Instrumentation, you can see that it injects *traceparent* and 00-_traceid_-01 as below. I'm looking into the format (what 00- and -01 are)
+
+```
+[2020-10-21 07:40:15.471734] msg:ConsumerRecord(topic='sotest', partition=0, offset=72, timestamp=1603266015485, timestamp_type=0, key=None, value=b'[2020-10-21 16:40:15.484] hello - 141', headers=[('traceparent', b'00-fbe0369f7400ffea562e756a6435c071-14c98b0a543eecfb-01')], checksum=None, serialized_key_size=-1, serialized_value_size=37, serialized_header_size=66)
+k:traceparent, v_hex:30302d66626530333639663734303066666561353632653735366136343335633037312d313463393862306135343365656366622d3031
+------------------------------
+[2020-10-21 07:40:25.475599] msg:ConsumerRecord(topic='sotest', partition=1, offset=76, timestamp=1603266025489, timestamp_type=0, key=None, value=b'[2020-10-21 16:40:25.489] hello - 142', headers=[('traceparent', b'00-209f928b8480126a805ef9b2ff8dd805-0d55ae883af334a6-01')], checksum=None, serialized_key_size=-1, serialized_value_size=37, serialized_header_size=66)
+k:traceparent, v_hex:30302d32303966393238623834383031323661383035656639623266663864643830352d306435356165383833616633333461362d3031
+------------------------------
+[2020-10-21 07:40:35.480977] msg:ConsumerRecord(topic='sotest', partition=2, offset=61, timestamp=1603266035494, timestamp_type=0, key=None, value=b'[2020-10-21 16:40:35.493] hello - 143', headers=[('traceparent', b'00-8533edf566580d3bb30555f350f3ec1a-5846649a3c692183-01')], checksum=None, serialized_key_size=-1, serialized_value_size=37, serialized_header_size=66)
+k:traceparent, v_hex:30302d38353333656466353636353830643362623330353535663335306633656331612d353834363634396133633639323138332d3031
+...
+```
+
+* When you run java_kp with Brave Kafka Interceptor, TBD
+
+```
+TBD
+```
+
+
 ## Notes
 
 ### Quick Kafka config with Docker

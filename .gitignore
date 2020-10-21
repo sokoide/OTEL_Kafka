@@ -2,4 +2,6 @@
 .vscode/
 .gradle/
 out/
+tags
+*.pyc
 
