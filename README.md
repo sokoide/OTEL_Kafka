@@ -15,7 +15,11 @@
 ```sh
 cd java_kp/src
 ./gradlew bootJar
+# for Kafka Instrumentation
 java -javaagent:$HOME/Downloads/opentelemetry-javaagent-all.jar -Dotel.exporter=jaeger -Dotel.exporter.jaeger.endpoint=timemachine:14250 -Dotel.exporter.jaeger.service.name=java_kp -jar build/libs/java_kp-1.0-SNAPSHOT.jar
+
+# for Brave interceptor
+java -Dzipkin.http.endpoint=timemachine:9411 -jar build/libs/java_kp-1.0-SNAPSHOT.jar
 ```
 
 ### java_kc (consumer)
