@@ -58,10 +58,15 @@ span:_Span(name="py_kc", context=SpanContext(trace_id=0x9749f59d118d9592c1a5a831
 ...
 ```
 
-* When you run java_kp with *Brave Kafka Interceptor*, TBD
+* When you run java_kp with *Brave Kafka Interceptor*, it injects X-B3-TraceId,X-B3-SpanId,X-B3-Sampled as below. Format is differnt from above.
 
 ```sh
-TBD
+[2020-10-22 12:32:26.782771] msg:ConsumerRecord(topic='sotest', partition=0, offset=1119, timestamp=1603369946793, timestamp_type=0, key=None, value=b'[2020-10-22 21:32:26.791] hello - 03', headers=[('X-B3-TraceId', b'5f917bdaaac71b911c1592bcde9f784f'), ('X-B3-SpanId', b'1c1592bcde9f784f'), ('X-B3-Sampled', b'1')], checksum=None, serialized_key_size=-1, serialized_value_size=36, serialized_header_size=84)
+k:X-B3-TraceId, v_hex:3566393137626461616163373162393131633135393262636465396637383466
+k:X-B3-SpanId, v_hex:31633135393262636465396637383466
+k:X-B3-Sampled, v_hex:31
+No tid or/and sid
+------------------------------
 ```
 
 * Jaeger trace stitching example. *traceparent* injected by *Java Instrumentation* in java_kp is nicely stitched with py_kc.

@@ -1,5 +1,6 @@
 package com.sokoide.java_kp;
 
+//import brave.kafka.interceptor.TracingProducerInterceptor;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.awt.datatransfer.StringSelection;
 import java.sql.Timestamp;
 import java.util.Properties;
+//import java.util.Collections;
 
 @SpringBootApplication
 public class App implements CommandLineRunner {
@@ -26,6 +28,11 @@ public class App implements CommandLineRunner {
         Properties properties = new Properties();
         properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 "timemachine:9094");
+
+        // brave interceptor
+//        properties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG,
+//                Collections.singletonList(TracingProducerInterceptor.class));
+
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties,
                 new StringSerializer(), new StringSerializer());
 
