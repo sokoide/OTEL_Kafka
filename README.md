@@ -30,7 +30,7 @@ java -javaagent:$HOME/Downloads/opentelemetry-javaagent-all.jar -Dotel.exporter=
 ### py_kc (consumer)
 
 ```
-pip install kafka-python
+pip install -r requirements.txt
 python py_kc.py
 ```
 
@@ -54,6 +54,28 @@ k:traceparent, v_hex:30302d38353333656466353636353830643362623330353535663335306
 
 ```
 TBD
+```
+
+* py_kc print like this
+
+```
+[2020-10-22 05:10:04.671057] msg:ConsumerRecord(topic='sotest', partition=0, offset=966, timestamp=1603343404671, timestamp_type=0, key=None, value=b'[2020-10-22 14:10:04.67] hello - 73', headers=[('traceparent', b'00-9749f59d118d9592c1a5a8311feb56cc-e37adb3b69cac1cf-01')], checksum=None, serialized_key_size=-1, serialized_value_size=35, serialized_header_size=66)
+k:traceparent, v_hex:30302d39373439663539643131386439353932633161356138333131666562353663632d653337616462336236396361633163662d3031
+tid:201097446668802158671425316767436330700, sid:16391654841992790479
+context:{'current-span': <opentelemetry.trace.span.DefaultSpan object at 0x7f1e0d478a00>}
+span:_Span(name="py_kc", context=SpanContext(trace_id=0x9749f59d118d9592c1a5a8311feb56cc, span_id=0x48ba11348793ee35, trace_state=0, is_remote=False))
+------------------------------
+[2020-10-22 05:10:14.674346] msg:ConsumerRecord(topic='sotest', partition=2, offset=977, timestamp=1603343414674, timestamp_type=0, key=None, value=b'[2020-10-22 14:10:14.674] hello - 74', headers=[('traceparent', b'00-fa034a99b0a78e8e7646ee3e698c67c6-18e98d5095fc960d-01')], checksum=None, serialized_key_size=-1, serialized_value_size=36, serialized_header_size=66)
+k:traceparent, v_hex:30302d66613033346139396230613738653865373634366565336536393863363763362d313865393864353039356663393630642d3031
+tid:332324088911696033159325742888678877126, sid:1795121303737112077
+context:{'current-span': <opentelemetry.trace.span.DefaultSpan object at 0x7f1e0c932700>}
+span:_Span(name="py_kc", context=SpanContext(trace_id=0xfa034a99b0a78e8e7646ee3e698c67c6, span_id=0x85550aae2a6de04c, trace_state=0, is_remote=False))
+------------------------------
+[2020-10-22 05:10:24.677780] msg:ConsumerRecord(topic='sotest', partition=0, offset=967, timestamp=1603343424677, timestamp_type=0, key=None, value=b'[2020-10-22 14:10:24.677] hello - 75', headers=[('traceparent', b'00-dbbe48a30f0f99be435183811a97810c-36a9602394367c38-01')], checksum=None, serialized_key_size=-1, serialized_value_size=36, serialized_header_size=66)
+k:traceparent, v_hex:30302d64626265343861333066306639396265343335313833383131613937383130632d333661393630323339343336376333382d3031
+tid:292088940732361281227130543846903480588, sid:3938785055038929976
+context:{'current-span': <opentelemetry.trace.span.DefaultSpan object at 0x7f1e0c929910>}
+span:_Span(name="py_kc", context=SpanContext(trace_id=0xdbbe48a30f0f99be435183811a97810c, span_id=0x684e6bd92a7eb44e, trace_state=0, is_remote=False))
 ```
 
 

@@ -1,0 +1,5 @@
+kafka-python
+opentelemetry-api == 0.14b0
+opentelemetry-sdk == 0.14b0
+opentelemetry-exporter-jaeger == 0.14b0
+
