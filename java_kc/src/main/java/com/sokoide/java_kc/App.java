@@ -1,6 +1,8 @@
 package com.sokoide.java_kc;
 
 import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.header.Header;
+import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -43,6 +45,19 @@ public class App implements CommandLineRunner {
                             record.partition(),
                             record.offset(),
                             record.value()));
+                    // print headers
+                    Headers headers = record.headers();
+                    for(Header header : headers) {
+                        StringBuilder sbStr = new StringBuilder(header.value().length);
+                        StringBuilder sbHex = new StringBuilder(header.value().length * 2);
+                        for(byte b: header.value()) {
+                            sbStr.append(String.format("%c", b));
+                            sbHex.append(String.format("%02x", b));
+                        }
+
+                        System.out.println(String.format(" k:%s, v_str:%s, v_hex:0x%s",
+                                header.key(), sbStr, sbHex));
+                    }
                     // Sleep per message
                     Thread.sleep(100l);
                 }
